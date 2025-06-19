@@ -87,14 +87,14 @@ function removeHighlights() {
     markers.length = 0;
 }
 
-function deactivateSubmitButton(button = submitButton) {
+function deactivateSubmitButton(button) {
     if (button) {
         button.setAttribute('disabled', '');
         button.textContent = 'Loading...';
     }
 }
 
-function activateSubmitButton(button = submitButton, buttonText = "Find") {
+function activateSubmitButton(button, buttonText = "Find") {
     if (button) {
         button.removeAttribute('disabled');
         button.textContent = buttonText;
@@ -105,7 +105,7 @@ function finishCallback() {
     summaryButton.removeAttribute('disabled');
     chatButton.removeAttribute('disabled');
     dimensionalityReductionButton.removeAttribute('disabled');
-    submitButton.textContent = 'Find';
+    // submitButton.textContent = 'Find';
     isProcessing = false;
     const processTime = new Date().getTime() - submitTime;
     console.log(`Finished ${processTime}ms`);
@@ -120,13 +120,13 @@ async function onSubmit() {
     if (!isProcessing) {
         submitTime = new Date().getTime();
         isProcessing = true;
-        submitButton.textContent = 'Stop';
+        // submitButton.textContent = 'Stop';
 
         document.getElementById('results-list').innerHTML = '';
         selectedIndex = -1;
         await semanticHighlight(finishCallback);
     } else {
-        submitButton.textContent = 'Submit';
+        // submitButton.textContent = 'Submit';
         isProcessing = false;
     }
 }
@@ -242,6 +242,7 @@ function highlightSelected(index) {
     selectedIndex = index;
     selectedClassName = markers[selectedIndex].className;
 
+    console.log('index', selectedIndex, markers)
     const marker1 = editor.markText(markers[selectedIndex].find().from, markers[selectedIndex].find().to, { className: 'highlight-select' });
     markers[selectedIndex].clear();
     markers[selectedIndex] = marker1;
@@ -644,10 +645,10 @@ function setValuesFromMetaJSON(jsonObject) {
 
 
 async function reloadModel(modelName){
-    deactivateSubmitButton();
+    // deactivateSubmitButton();
     setProgressBarValue(0);
     await loadSemantic(modelName);
-    activateSubmitButton();
+    // activateSubmitButton();
 }
 
 function handleFileUpload() {
@@ -802,6 +803,12 @@ async function ollama_chat(server_url = 'http://localhost:11434'){
  * Setup the application when the page loads.
  */
 window.onload = async function () {
+    const qt = document.getElementById('query-text')
+    qt.addEventListener('keyup', (event)=>{
+        if(event.key === 'Enter') {
+            window.onSubmit()
+        }
+    })
     window.onSubmit = onSubmit;
 
     editor = CodeMirror.fromTextArea(document.getElementById('input-text'), {
@@ -830,19 +837,19 @@ window.onload = async function () {
     });
 
     document.getElementById('model-name').addEventListener('change', async function () {
-        deactivateSubmitButton();
+        // deactivateSubmitButton();
         setProgressBarValue(0);
         const modelName = this.value;
         await loadSemantic(modelName);
-        activateSubmitButton();
+        // activateSubmitButton();
     });
 
     document.getElementById('quantized').addEventListener('change', async function () {
-        deactivateSubmitButton();
+        // deactivateSubmitButton();
         setProgressBarValue(0);
         const modelName = document.getElementById("model-name").value
         await loadSemantic(modelName);
-        activateSubmitButton();
+        // activateSubmitButton();
     });
 
     document.getElementById('summary-model-name').addEventListener('change', async function () {
@@ -1049,11 +1056,11 @@ Lines: ${lineCount}`;
         showToast("File(s) loaded ✅");
         console.log("File(s) loaded ✅");
         await loadSemantic(modelName);
-        activateSubmitButton();
+        // activateSubmitButton();
     } 
     else {
         await loadSemantic(modelName);
-        activateSubmitButton();
+        // activateSubmitButton();
     }
 
     if (urlParams.has('universalIndexSettingsWordLevel')) {

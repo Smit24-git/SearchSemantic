@@ -1,7 +1,17 @@
+
+.search-bar {
+  padding: 15px 20px;
+  font-size: 120%;
+  margin: 10px auto;
+  display: block;
+  width: 100%;
+  border-radius: 20px;
+
+}
 #input-text {
   height: 50vh;
-  width: 80vw;
-  min-width: 80vw;
+  /* width: 80vw; */
+  /* min-width: 80vw; */
   text-align: left !important;
 }
 .CodeMirror {
@@ -89,10 +99,10 @@ td {
   width: 100%;
 }
 
-#query-text {
+/* #query-text {
   height: 75%;
   min-width: 80%;
-}
+} */
 
 
 .submit-button {

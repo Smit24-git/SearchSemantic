@@ -32,6 +32,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './index.html',
     }),
+    new HtmlWebpackPlugin({
+      filename: 'about.html',
+      template: './about.html',
+      chunks: ['about']
+    }),
     new MiniCssExtractPlugin(),
     new FaviconsWebpackPlugin(),
     new CopyWebpackPlugin({
