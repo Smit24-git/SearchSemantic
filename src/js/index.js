@@ -16,6 +16,7 @@ import ollama from "ollama/browser";
 import { marked } from 'marked';
 
 import logo from './SemanticFinder.svg';
+import configureModelList from './model-list.js';
 
 /**
  * @type {Array<CodeMirror.TextMarker>}
@@ -803,6 +804,8 @@ async function ollama_chat(server_url = 'http://localhost:11434'){
  * Setup the application when the page loads.
  */
 window.onload = async function () {
+    configureModelList();
+    
     const qt = document.getElementById('query-text')
     qt.addEventListener('keyup', (event)=>{
         if(event.key === 'Enter') {
