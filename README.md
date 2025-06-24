@@ -1,20 +1,4 @@
-<p align="center">
-  <a href="https://do-me.github.io/SemanticFinder/">
-    <img src="https://github.com/do-me/SemanticFinder/assets/47481567/4522ab9d-08f4-4f4c-92db-dbf14ccb2b70" width="320" alt="SemanticFinder">
-  </a>    
-<h1 align="center">Frontend-only live semantic search and chat-with-your-documents built on transformers.js. Supports Wasm and WebGPU!</h1>
-</p>
-
-![](/SemanticFinder.gif?)
-
-## [Try the web app](https://do-me.github.io/SemanticFinder/), [install the Chrome extension](#browser-extension) or read the [introduction blog post](https://geo.rocks/post/semanticfinder-semantic-search-frontend-only/).
-
-## 🔥 For best performance try the [WebGPU Version here!](https://do-me.github.io/SemanticFinder/webgpu/) 🔥
-
-Semantic search right in your browser! Calculates the embeddings and cosine similarity client-side without server-side inferencing, using [transformers.js](https://xenova.github.io/transformers.js/) and latest SOTA embedding models from Huggingface.
-
-## Intro Video
-[![SemanticFinder Introduction](https://github.com/user-attachments/assets/9febc0e7-f444-4039-8cf2-af39f3d7733f)](https://www.youtube.com/watch?v=FZsWH1J4MXo "Get started with semantic search in the browser")
+# Search Semantic
 
 ## Models
 All transformers.js-compatible feature-extraction models are supported. Here is a sortable list you can go through: [daily updated list](https://do-me.github.io/trending-huggingface-models/). Download the compatible models table as xlsx, csv, json, parquet, or html here: https://github.com/do-me/trending-huggingface-models/.
@@ -58,21 +42,6 @@ If you want to build instead, run
 
 Afterwards, you'll find the `index.html`, `main.css` and `bundle.js` in `dist`.
 
-## Browser extension 
-Download the Chrome extension from [Chrome webstore](https://chrome.google.com/webstore/detail/semanticfinder/ddmgffoffelnhnonpoiblaoboaeieejl) and pin it. Right click the extension icon for `options`: 
-- choose distiluse-base-multilingual-cased-v2 for multilingual usage (default is English-only)
-- set a higher number for min characters to split by for larger texts
-
-![](SemanticFinder_Chrome_Extension.gif?)
-
-### Local build 
-If you want to build the browser extension locally, clone the repo and cd in `extension` directory then run: 
-- `npm install`
-- `npm run build` for a static build or
-- `npm run dev` for the auto-refreshing development version
-- go to Chrome extension settings with `chrome://extensions`
-- select `Load Unpacked` and choose the `build` folder
-- pin the extension in Chrome so you can access it easily. If it doesn't work for you, feel free to open an issue.
 
 ## Speed 
 Tested on the entire book of [Moby Dick](https://archive.org/stream/mobydickorwhale01melvuoft/mobydickorwhale01melvuoft_djvu.txt) with 660.000 characters ~13.000 lines or ~111.000 words. 
@@ -142,38 +111,3 @@ You can customize everything!
 
 ## Collaboration 
 PRs welcome!
-
-## To Dos (no priorization)
-- [x] similarity score cutoff/threshold
-- [x] add option for more highlights (e.g. all above certain score)
-- [x] add stop button 
-- [x] MaterialUI for input fields or proper labels
-- [x] create a demo without CDNs
-- [x] separate one html properly in html, js, css
-- [x] add npm installation 
-- [x] option for loading embeddings from file or generally allow sharing embeddings in some way
-- [x] simplify chunking function so the original text can be loaded without issues
-- [ ] improve the color range
-- [ ] rewrite the cosine similarity function in Rust, port to WASM and load as a module for possible speedup (experimental)
-- [ ] UI overhaul
-- [ ] polish code 
-- [x]   - jQuery/vanilla JS mixed
-- [ ]   - clean up functions 
-- [ ]   - add more comments
-- [ ] add possible use cases
-- [ ] package as a standalone application (maybe with custom model choice; to be downloaded once from HF hub, then saved locally)
-- [ ] possible integration as example in [transformers.js homepage](https://github.com/xenova/transformers.js/issues/84)
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=do-me/SemanticFinder&type=Timeline)](https://star-history.com/#do-me/SemanticFinder&Timeline)
-
-## Gource Map 
-
-![image](SemanticFinder_gource.png)
-
-Gource image created with: 
-
-```bash 
-gource -1280x720 --title "SemanticFinder" --seconds-per-day 0.03 --auto-skip-seconds 0.03 --bloom-intensity 0.5 --max-user-speed 500 --highlight-dirs --multi-sampling --highlight-colour 00FF00  
-```
